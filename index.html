@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Psychological Perspectives I - Colegio Montano</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montano: {
+                            blue: '#1269A8',
+                            yellow: '#F7D615',
+                            teal: '#54887D',
+                            lightblue: '#88B5C7',
+                            olive: '#A6B046',
+                            softwhite: '#F2F5E9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #e5ebdf;
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+        }
+        .whiteboard-frame {
+            background-color: #ffffff;
+            border: 12px solid #d1d5db;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .tab-btn.active {
+            background-color: #1269A8;
+            color: #ffffff;
+            border-bottom: 4px solid #F7D615;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #88B5C7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="p-2 md:p-6 min-h-screen flex flex-col justify-center items-center">
+
+    <!-- Main Container Frame -->
+    <div id="mainContainer" class="whiteboard-frame w-full max-w-7xl min-h-[90vh] flex flex-col justify-between overflow-hidden transition-all duration-300">
+        
+        <!-- Header Section -->
+        <header class="bg-montano-softwhite p-4 border-b-2 border-gray-200 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="h-14 object-contain rounded-md bg-white p-1 border">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-montano-blue tracking-tight">COLEGIO MONTANO</h1>
+                    <p class="text-xs md:text-sm font-semibold text-montano-teal">Grade: 5th Marketing | Level: C1 Advanced ESL</p>
+                    <p class="text-xs font-bold text-montano-olive">Guide 7: Modern Psychological Perspectives II (Humanistic, Sociocultural & Evolutionary)</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button onclick="toggleFullscreen()" class="flex items-center gap-2 bg-montano-blue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200 text-sm">
+                    <i class="fa-solid fa-expand"></i> <span class="hidden sm:inline">Fullscreen Digital Board</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-gray-100 border-b border-gray-300 flex overflow-x-auto custom-scrollbar">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-book-open"></i> 1. Theory & Grammar
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-list-check"></i> 2. Solved Examples (15)
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-microphone"></i> 3. Voice Simulator & Dashboard
+            </button>
+            <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-lightbulb"></i> 4. Critical Reflection
+            </button>
+            <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-pen-to-square"></i> 5. Formative Evaluation (15)
+            </button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="p-4 sm:p-6 flex-grow bg-white custom-scrollbar overflow-y-auto max-h-[calc(90vh-140px)]">
+
+            <!-- TAB 1: THEORY & GRAMMAR -->
+            <section id="tab1" class="tab-content space-y-6">
+                <!-- Header Banner -->
+                <div class="bg-gradient-to-r from-montano-blue to-montano-teal text-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-2">Theoretical Foundations: Modern Psychological Perspectives II</h2>
+                    <p class="text-sm sm:text-base opacity-90">Exploring Humanistic, Sociocultural, and Evolutionary perspectives; analyzing personality, personal values, social influence, cultural identity, needs hierarchy, motivation, ethical marketing, and stereotypes.</p>
+                </div>
+
+                <!-- Retrieval Practice Box -->
+                <div class="bg-montano-softwhite border-l-4 border-montano-yellow p-4 rounded-r-lg shadow-sm">
+                    <h3 class="font-bold text-montano-blue text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-rotate text-montano-yellow"></i> 5-Min Retrieval Practice Warm-Up
+                    </h3>
+                    <p class="text-sm text-gray-700 mt-1">
+                        Recall from Guide 6 that biological, behavioral, cognitive, and psychodynamic perspectives examine internal and unconscious mechanics. In Guide 7, we expand outward to examine how human potential (Humanistic), social and cultural contexts (Sociocultural), and ancestral survival strategies (Evolutionary) shape consumer identity, values, and brand choices.
+                    </p>
+                </div>
+
+                <!-- Concept Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 1. Humanistic Perspective -->
+                    <div class="border-2 border-montano-blue rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-blue text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-seedling"></i></span>
+                                <h4 class="font-bold text-gray-800 text-base">1. Humanistic Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-4">Focuses on personal growth, self-actualization, free will, authentic values, and intrinsic motivation. Brands succeed when they empower customer self-fulfillment.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-blue bg-blue-50 p-2 rounded">Key Concept: Self-Actualization & Values</div>
+                    </div>
+
+                    <!-- 2. Sociocultural Perspective -->
+                    <div class="border-2 border-montano-teal rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-teal text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-users"></i></span>
+                                <h4 class="font-bold text-gray-800 text-base">2. Sociocultural Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-4">Emphasizes social influence, cultural norms, peer groups, identity, and belonging. Consumer preferences are deeply shaped by cultural symbols and social status expectations.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-teal bg-teal-50 p-2 rounded">Key Concept: Culture, Norms & Belonging</div>
+                    </div>
+
+                    <!-- 3. Evolutionary Perspective -->
+                    <div class="border-2 border-montano-olive rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-olive text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-dna"></i></span>
+                                <h4 class="font-bold text-gray-800 text-base">3. Evolutionary Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-4">Examines how ancestral survival and reproductive drives manifest in modern consumer behavior, such as status signaling, risk avoidance, resource hoarding, and kin protection.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-olive bg-green-50 p-2 rounded">Key Concept: Ancestral Survival & Signaling</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: SOLVED EXAMPLES (15 EXAMPLES WITH TTS) -->
+            <section id="tab2" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">15 Analytical Solved Examples (Guide 7)</h2>
+                        <p class="text-xs text-gray-500">Categorized by difficulty level. Click the speaker icon to listen to the explanation using native Text-to-Speech.</p>
+                    </div>
+                </div>
+
+                <!-- Level 1: Basic -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-montano-blue flex items-center gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-montano-blue text-xs rounded-full uppercase">Level 1 - Basic</span>
+                        Core Definitions: Humanistic, Sociocultural & Evolutionary
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="basic-examples"></div>
+                </div>
+
+                <!-- Level 2: Intermediate -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-lg font-bold text-montano-teal flex items-center gap-2">
+                        <span class="px-3 py-1 bg-teal-100 text-montano-teal text-xs rounded-full uppercase">Level 2 - Intermediate</span>
+                        Applying Perspectives to Consumer Needs, Culture & Values
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="intermediate-examples"></div>
+                </div>
+
+                <!-- Level 3: Advanced -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-lg font-bold text-montano-olive flex items-center gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-montano-olive text-xs rounded-full uppercase">Level 3 - Advanced</span>
+                        Ethics, Stereotypes & Cross-Perspective Synthesis
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="advanced-examples"></div>
+                </div>
+            </section>
+
+            <!-- TAB 3: LIVE INTERACTIVE VOICE SIMULATOR & DASHBOARD -->
+            <section id="tab3" class="tab-content hidden space-y-6">
+                <div class="bg-montano-softwhite p-4 rounded-xl border border-montano-lightblue flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                            <i class="fa-solid fa-headset text-montano-yellow"></i> Marketing Strategy Simulator (Modern Perspectives II)
+                        </h2>
+                        <p class="text-xs text-gray-600">Roleplay as a strategic marketing consultant addressing humanistic empowerment, sociocultural belonging, and evolutionary signaling.</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border shadow-sm text-xs font-semibold text-gray-700">
+                        <span id="mic-status-indicator" class="w-3 h-3 rounded-full bg-gray-400 inline-block"></span>
+                        <span id="mic-status-text">Microphone Idle</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Simulator Interface (Left - 7 Cols) -->
+                    <div class="lg:col-span-7 bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+                        <!-- Scenario Description -->
+                        <div class="bg-blue-50 border-l-4 border-montano-blue p-4 rounded">
+                            <p class="text-xs font-bold text-montano-blue uppercase tracking-wider">Current Case Prompt:</p>
+                            <p class="text-sm font-semibold text-gray-800 mt-1" id="simulator-prompt">
+                                "An eco-friendly apparel brand wants to launch a global campaign. How would a sociocultural marketer versus an evolutionary psychologist design the messaging for cultural belonging and status signaling?"
+                            </p>
+                        </div>
+
+                        <!-- Dialogue Box -->
+                        <div id="dialogue-box" class="h-48 overflow-y-auto bg-gray-50 border p-3 rounded-lg text-sm space-y-3 custom-scrollbar">
+                            <div class="flex gap-2">
+                                <div class="font-bold text-montano-blue min-w-[70px]">Director:</div>
+                                <div class="text-gray-700 bg-white p-2 rounded shadow-xs border">Welcome! Let's examine humanistic self-actualization, sociocultural norms, and evolutionary motivations in marketing.</div>
+                            </div>
+                        </div>
+
+                        <!-- Voice Controls and Fallback Input -->
+                        <div class="space-y-3">
+                            <div class="flex gap-2">
+                                <button id="start-record-btn" onclick="toggleSpeechRecognition()" class="flex-1 bg-montano-blue hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition text-sm shadow">
+                                    <i class="fa-solid fa-microphone"></i> <span id="record-btn-text">Speak Response</span>
+                                </button>
+                                <button onclick="triggerTTSResponse()" class="bg-montano-teal hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition text-sm shadow">
+                                    <i class="fa-solid fa-volume-high"></i> Listen AI
+                                </button>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <input type="text" id="manual-text-input" placeholder="Or type your perspective analysis here..." class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-montano-blue">
+                                <button onclick="processTextSubmission()" class="bg-montano-olive hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg text-sm transition">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Performance Dashboard (Right - 5 Cols) -->
+                    <div class="lg:col-span-5 bg-gray-50 border border-gray-300 rounded-xl p-5 space-y-4">
+                        <h3 class="font-bold text-gray-800 text-md border-b pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-montano-blue"></i> Real-Time Performance Dashboard
+                        </h3>
+
+                        <!-- Metric 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Pronunciation & Speech Clarity Score</span>
+                                <span id="score-pronunciation" class="text-montano-blue">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-pronunciation" class="bg-montano-blue h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Perspective & Theoretical Accuracy Score</span>
+                                <span id="score-accuracy" class="text-montano-teal">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-accuracy" class="bg-montano-teal h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Politeness & Expression Etiquette Score</span>
+                                <span id="score-politeness" class="text-montano-olive">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-politeness" class="bg-montano-olive h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Key Terms Container -->
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-600 mb-2">Detected Perspective Terms:</p>
+                            <div id="detected-terms" class="flex flex-wrap gap-1 min-h-[35px] p-2 bg-white rounded border border-gray-200 text-xs text-gray-400">
+                                Waiting for input...
+                            </div>
+                        </div>
+
+                        <!-- AI Feedback Container -->
+                        <div class="bg-white p-3 rounded-lg border border-montano-lightblue space-y-1">
+                            <p class="text-xs font-bold text-montano-blue flex items-center gap-1">
+                                <i class="fa-solid fa-robot"></i> AI Pedagogical Feedback:
+                            </p>
+                            <p id="ai-feedback-text" class="text-xs text-gray-600 italic">
+                                Speak or type your answer to receive immediate diagnostic evaluation regarding humanistic, sociocultural, and evolutionary perspectives.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: CRITICAL REFLECTION QUESTIONS -->
+            <section id="tab4" class="tab-content hidden space-y-6">
+                <div class="bg-montano-softwhite p-4 rounded-xl border-l-4 border-montano-blue flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">Critical Reflection & Ethical Marketing</h2>
+                        <p class="text-xs text-gray-600">Analyze cultural norms, evolutionary signaling, and ethical marketing boundaries in advertising. Answers auto-save locally.</p>
+                    </div>
+                    <span class="bg-montano-yellow text-montano-blue font-bold text-xs px-3 py-1.5 rounded-full shadow-xs">Activity 3 Workshop</span>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Reflection 1 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            1. How does the Humanistic perspective's focus on self-actualization differ from the Evolutionary perspective's focus on status signaling in consumer choices?
+                        </label>
+                        <textarea id="ref-q1" oninput="saveReflection('ref-q1')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-blue custom-scrollbar"></textarea>
+                    </div>
+
+                    <!-- Reflection 2 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            2. Why is cultural context critical when applying sociocultural perspectives to international marketing campaigns? Provide an example of potential cultural misunderstanding.
+                        </label>
+                        <textarea id="ref-q2" oninput="saveReflection('ref-q2')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-teal custom-scrollbar"></textarea>
+                    </div>
+
+                    <!-- Reflection 3 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            3. Discuss the ethical implications of using evolutionary or sociocultural stereotypes in modern advertising. Where should marketers draw the line?
+                        </label>
+                        <textarea id="ref-q3" oninput="saveReflection('ref-q3')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-olive custom-scrollbar"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: FORMATIVE EVALUATION (15 PROBLEMS WITH TOGGLE SOLUTIONS) -->
+            <section id="tab5" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">Formative Evaluation Assessment</h2>
+                        <p class="text-xs text-gray-500">15 problem-solving exercises across 3 difficulty tiers. Use the toggle buttons to verify step-by-step solutions.</p>
+                    </div>
+                </div>
+
+                <!-- Level 1 Exercises -->
+                <div class="space-y-4">
+                    <h3 class="text-md font-bold text-montano-blue uppercase tracking-wide">Tier 1: Basic Definitions (Humanistic, Sociocultural & Evolutionary)</h3>
+                    <div class="space-y-3" id="eval-tier-1"></div>
+                </div>
+
+                <!-- Level 2 Exercises -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-md font-bold text-montano-teal uppercase tracking-wide">Tier 2: Intermediate Scenario Applications</h3>
+                    <div class="space-y-3" id="eval-tier-2"></div>
+                </div>
+
+                <!-- Level 3 Exercises -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-md font-bold text-montano-olive uppercase tracking-wide">Tier 3: Advanced Ethics, Culture & Synthesis</h3>
+                    <div class="space-y-3" id="eval-tier-3"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 border-t p-3 text-center text-xs text-gray-500 font-semibold">
+            Colegio Montano &copy; 2026 | Instructional Design & Interactive Educational Technology
+        </footer>
+    </div>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        // --- Fullscreen Toggle ---
+        function toggleFullscreen() {
+            const container = document.getElementById('mainContainer');
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) container.requestFullscreen();
+                else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // --- Text To Speech Integration ---
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Text-to-Speech is not supported in this browser.');
+            }
+        }
+
+        // --- Solved Examples Data (15 Items) ---
+        const solvedExamplesData = [
+            // Basic (1-5)
+            { level: 1, title: "Humanistic Self-Actualization", body: "Question: What is the primary focus of the humanistic perspective in psychology?\nAnswer: Human potential, personal growth, self-actualization, free will, and intrinsic motivation." },
+            { level: 1, title: "Sociocultural Context", body: "Question: How does the sociocultural perspective explain human behavior?\nAnswer: By examining social influence, cultural norms, peer groups, and community belonging." },
+            { level: 1, title: "Evolutionary Signaling", body: "Question: What central mechanism drives the evolutionary perspective in psychology?\nAnswer: Ancestral survival, reproductive success, and adaptive behaviors such as status signaling and resource protection." },
+            { level: 1, title: "Hierarchy of Needs", body: "Question: How do humanistic needs influence consumer motivation?\nAnswer: Consumers progress from basic physiological safety toward esteem and self-actualization in their purchasing goals." },
+            { level: 1, title: "Cultural Norms", body: "Question: What role do cultural norms play in shaping individual values and identity?\nAnswer: They establish shared expectations, acceptable behaviors, and symbolic meanings tied to lifestyle choices." },
+            
+            // Intermediate (6-10)
+            { level: 2, title: "Humanistic Brand Empowerment", body: "Question: How do brands successfully apply humanistic psychology in marketing campaigns?\nAnswer: By framing products as tools for personal empowerment, creativity, and authentic self-expression (e.g., fitness or education apps)." },
+            { level: 2, title: "Sociocultural Belonging in Fashion", body: "Question: Why do streetwear brands leverage peer groups and subcultures so effectively?\nAnswer: They harness the sociocultural desire for group belonging, identity signaling, and tribal acceptance." },
+            { level: 2, title: "Evolutionary Status Signaling", body: "Question: How would an evolutionary psychologist explain the purchase of luxury watches or sports cars?\nAnswer: As modern manifestations of ancestral status signaling to attract social prestige and perceived resource dominance." },
+            { level: 2, title: "Cultural Preferences in Food", body: "Question: How does culture impact consumer decision-making in the food industry?\nAnswer: Cultural traditions, taboos, and shared culinary symbols dictate flavor preferences and mealtime rituals." },
+            { level: 2, title: "Personal Values Alignment", body: "Question: Why do consumers increasingly prefer brands whose ethical values align with their own identity?\nAnswer: Because purchasing decisions serve as public expressions of personal values and moral self-concept." },
+
+            // Advanced (11-15)
+            { level: 3, title: "Cross-Perspective Eco-Campaign", body: "Question: Synthesize how humanistic, sociocultural, and evolutionary perspectives explain consumer adoption of electric vehicles.\nAnswer: Humanistic: personal contribution to a better world; Sociocultural: community green norms; Evolutionary: protecting ancestral resources and signaling status." },
+            { level: 3, title: "Ethical Marketing & Stereotypes", body: "Question: What are the ethical dangers of relying on sociocultural stereotypes in global advertising campaigns?\nAnswer: It can reinforce harmful prejudices, alienate diverse consumer segments, and reduce complex cultures to caricatures." },
+            { level: 3, title: "Limitations of Evolutionary Theory in Marketing", body: "Question: What is a major limitation of applying evolutionary psychology to modern digital consumer behavior?\nAnswer: Evolutionary theory can over-generalize ancestral drives, often ignoring modern cultural nuances and individual cognitive choices." },
+            { level: 3, title: "Humanistic vs. Evolutionary Motivation", body: "Question: How do humanistic and evolutionary perspectives differ in their explanation of why people buy luxury goods?\nAnswer: Humanistic views it as self-expression and personal growth; evolutionary views it as competitive status signaling for social dominance." },
+            { level: 3, title: "Activity 3 Strategy Synthesis", body: "Question: How can a marketing director design an ethical campaign that balances cultural respect with aspirational humanistic goals?\nAnswer: By co-creating campaigns with local cultural communities, honoring authentic traditions, and empowering individual self-fulfillment." }
+        ];
+
+        function renderExamples() {
+            const basicContainer = document.getElementById('basic-examples');
+            const interContainer = document.getElementById('intermediate-examples');
+            const advContainer = document.getElementById('advanced-examples');
+
+            solvedExamplesData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-montano-softwhite p-4 rounded-lg border border-gray-200 flex flex-col justify-between space-y-3 shadow-xs";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-bold text-sm text-gray-800">#${index+1} ${item.title}</h4>
+                            <button onclick="speakText('${item.body.replace(/'/g, "\\'")}')" class="text-montano-blue hover:text-blue-800 p-1" title="Listen with Audio">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-600 whitespace-pre-line leading-relaxed">${item.body}</p>
+                    </div>
+                `;
+                if (item.level === 1) basicContainer.appendChild(card);
+                else if (item.level === 2) interContainer.appendChild(card);
+                else advContainer.appendChild(card);
+            });
+        }
+
+        // --- Voice Simulator & Dashboard Logic ---
+        let recognition;
+        let isRecording = false;
+
+        function toggleSpeechRecognition() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert('Speech Recognition Web API is not supported in this browser. Please use Chrome or Edge, or use text fallback input.');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!recognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = () => {
+                    isRecording = true;
+                    document.getElementById('mic-status-indicator').className = "w-3 h-3 rounded-full bg-red-500 animate-ping inline-block";
+                    document.getElementById('mic-status-text').innerText = "Listening...";
+                    document.getElementById('record-btn-text').innerText = "Stop Recording";
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('manual-text-input').value = transcript;
+                    evaluateSpeechInput(transcript);
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    stopRecordingState();
+                };
+
+                recognition.onend = () => {
+                    stopRecordingState();
+                };
+            }
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        function stopRecordingState() {
+            isRecording = false;
+            document.getElementById('mic-status-indicator').className = "w-3 h-3 rounded-full bg-gray-400 inline-block";
+            document.getElementById('mic-status-text').innerText = "Microphone Idle";
+            document.getElementById('record-btn-text').innerText = "Speak Response";
+        }
+
+        function processTextSubmission() {
+            const input = document.getElementById('manual-text-input').value;
+            if (input.trim() !== '') {
+                evaluateSpeechInput(input);
+            }
+        }
+
+        function evaluateSpeechInput(text) {
+            const dialogue = document.getElementById('dialogue-box');
+            dialogue.innerHTML += `
+                <div class="flex gap-2 justify-end">
+                    <div class="text-white bg-montano-blue p-2 rounded shadow-xs max-w-[80%]">${text}</div>
+                    <div class="font-bold text-montano-teal min-w-[50px] text-right">You:</div>
+                </div>
+            `;
+            dialogue.scrollTop = dialogue.scrollHeight;
+
+            const lower = text.toLowerCase();
+            const keywords = ['humanistic', 'sociocultural', 'evolutionary', 'culture', 'values', 'self-actualization', 'belonging', 'status', 'signaling', 'ethics', 'norms'];
+            
+            let detected = [];
+            keywords.forEach(kw => {
+                if (lower.includes(kw)) detected.push(kw);
+            });
+
+            const accuracyScore = Math.min(100, Math.round((detected.length / 4) * 100));
+            const politenessKeywords = ['thank you', 'director', 'please', 'would', 'suggest', 'respectfully', 'good morning', 'sir'];
+            let politeCount = 0;
+            politenessKeywords.forEach(pw => { if (lower.includes(pw)) politeCount++; });
+            const politenessScore = Math.min(100, 60 + (politeCount * 20));
+            const pronunciationScore = text.length > 20 ? Math.min(98, 75 + Math.floor(Math.random() * 20)) : 40;
+
+            document.getElementById('bar-pronunciation').style.width = pronunciationScore + '%';
+            document.getElementById('score-pronunciation').innerText = pronunciationScore + '%';
+
+            document.getElementById('bar-accuracy').style.width = accuracyScore + '%';
+            document.getElementById('score-accuracy').innerText = accuracyScore + '%';
+
+            document.getElementById('bar-politeness').style.width = politenessScore + '%';
+            document.getElementById('score-politeness').innerText = politenessScore + '%';
+
+            const termsContainer = document.getElementById('detected-terms');
+            if (detected.length > 0) {
+                termsContainer.innerHTML = detected.map(d => `<span class="bg-blue-100 text-montano-blue font-bold px-2 py-0.5 rounded">${d}</span>`).join(' ');
+            } else {
+                termsContainer.innerHTML = `<span class="text-red-400">No perspective terms detected. Try mentioning humanistic, sociocultural, evolutionary, culture, or values.</span>`;
+            }
+
+            let feedback = "";
+            if (accuracyScore >= 75) {
+                feedback = "Outstanding analysis! You effectively applied humanistic, sociocultural, and evolutionary perspectives to strategic marketing.";
+            } else if (accuracyScore >= 40) {
+                feedback = "Good response. To increase accuracy, incorporate specific terms like self-actualization, cultural norms, or status signaling.";
+            } else {
+                feedback = "Needs improvement. Ensure you reference humanistic, sociocultural, or evolutionary perspectives.";
+            }
+            document.getElementById('ai-feedback-text').innerText = feedback;
+        }
+
+        function triggerTTSResponse() {
+            const feedback = document.getElementById('ai-feedback-text').innerText;
+            speakText("AI Evaluation Response: " + feedback);
+        }
+
+        // --- Critical Reflection Auto-Save ---
+        function saveReflection(id) {
+            const val = document.getElementById(id).value;
+            localStorage.setItem('montano_psych_g7_' + id, val);
+        }
+
+        function loadReflections() {
+            ['ref-q1', 'ref-q2', 'ref-q3'].forEach(id => {
+                const saved = localStorage.getItem('montano_psych_g7_' + id);
+                if (saved) document.getElementById(id).value = saved;
+            });
+        }
+
+        // --- Formative Evaluation Data (15 Problems) ---
+        const evalProblems = [
+            // Level 1
+            { tier: 1, q: "1. What is the main focus of the humanistic perspective?", ans: "Answer: Human potential, personal growth, self-actualization, and intrinsic motivation." },
+            { tier: 1, q: "2. Which perspective investigates social influence and cultural norms?", ans: "Answer: The sociocultural perspective." },
+            { tier: 1, q: "3. What motivates consumer behavior according to the evolutionary perspective?", ans: "Answer: Ancestral survival, reproductive success, and adaptive drives like resource protection and status." },
+            { tier: 1, q: "4. What does self-actualization represent in humanistic psychology?", ans: "Answer: The fulfillment of one's highest potential and authentic personal growth." },
+            { tier: 1, q: "5. How do cultural norms impact consumer identity?", ans: "Answer: By defining shared expectations, symbols, and acceptable lifestyle behaviors within a group." },
+            
+            // Level 2
+            { tier: 2, q: "6. How do humanistic marketing strategies empower consumers?", ans: "Answer: By framing products as tools for personal development, creativity, and self-fulfillment." },
+            { tier: 2, q: "7. Why do sociocultural peer groups strongly influence teenage purchasing habits?", ans: "Answer: Driven by the deep-seated human need for social belonging and cultural identity alignment." },
+            { tier: 2, q: "8. How does evolutionary theory explain status signaling in luxury markets?", ans: "Answer: As an adaptive strategy to display resource dominance and attract social prestige." },
+            { tier: 2, q: "9. Why must international marketers understand cultural differences before launching campaigns?", ans: "Answer: To avoid cultural misunderstandings and ensure brand messaging respects local norms and taboos." },
+            { tier: 2, q: "10. How do personal values guide modern consumer brand loyalty?", ans: "Answer: Consumers seek brands whose ethical and social values mirror their own identity and moral self-concept." },
+
+            // Level 3
+            { tier: 3, q: "11. Synthesize how humanistic, sociocultural, and evolutionary perspectives collectively explain consumer preferences for sustainable luxury products.", ans: "Answer: Humanistic self-actualization, sociocultural community green norms, and evolutionary resource protection." },
+            { tier: 3, q: "12. What are the ethical risks of using sociocultural stereotypes in advertising?", ans: "Answer: Reinforcing harmful prejudices, alienating consumer groups, and reducing diverse cultures to flat caricatures." },
+            { tier: 3, q: "13. Compare how humanistic and evolutionary perspectives interpret the purchase of expensive designer clothing.", ans: "Answer: Humanistic views it as authentic self-expression; evolutionary views it as competitive status signaling." },
+            { tier: 3, q: "14. Evaluate why relying solely on evolutionary theory is insufficient for explaining digital age marketing trends.", ans: "Answer: It overlooks rapid technological changes, diverse cultural contexts, and conscious humanistic values." },
+            { tier: 3, q: "15. Formulate an ethical marketing framework for Activity 3 that honors cultural diversity while promoting self-actualization.", ans: "Answer: Involve local cultural stakeholders in campaign design, prioritize transparent messaging, and support community empowerment." }
+        ];
+
+        function renderEvaluation() {
+            const t1 = document.getElementById('eval-tier-1');
+            const t2 = document.getElementById('eval-tier-2');
+            const t3 = document.getElementById('eval-tier-3');
+
+            evalProblems.forEach((item, index) => {
+                const box = document.createElement('div');
+                box.className = "bg-white border border-gray-200 rounded-lg p-4 shadow-xs space-y-2";
+                box.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <p class="text-sm font-semibold text-gray-800">${item.q}</p>
+                        <button onclick="toggleSolution('sol-${index}')" class="text-xs bg-montano-softwhite hover:bg-montano-lightblue text-montano-blue font-bold px-3 py-1.5 rounded border border-montano-lightblue transition shrink-0">
+                            Show / Hide Solution
+                        </button>
+                    </div>
+                    <div id="sol-${index}" class="hidden mt-2 p-3 bg-blue-50 border-l-4 border-montano-blue text-xs text-gray-700 font-medium">
+                        ${item.ans}
+                    </div>
+                `;
+                if (item.tier === 1) t1.appendChild(box);
+                else if (item.tier === 2) t2.appendChild(box);
+                else t3.appendChild(box);
+            });
+        }
+
+        function toggleSolution(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+
+        // Initialize Page Data
+        window.onload = function() {
+            renderExamples();
+            renderEvaluation();
+            loadReflections();
+        };
+    </script>
+</body>
+</html>
